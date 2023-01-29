@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     # Skip this step in forks
-    if: github.repository_owner == 'ThisMushroom'
+    if: github.repository_owner == 'directus'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -69,7 +69,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}"
-          pnpm -r publish --access=private --no-git-checks
+          pnpm -r publish --access=public --no-git-checks
 
   build-images:
     name: Build Images
